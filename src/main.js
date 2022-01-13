@@ -23,14 +23,10 @@ const i18n = new VueI18n({
   }
 })
 // Template Layouts
-import DefaultLayout from './layouts/Default.vue'
 import DashboardLayout from './layouts/Dashboard.vue'
-import DashboardRTLLayout from './layouts/DashboardRTL.vue'
 
 // Adding template layouts to the vue components.
-Vue.component("layout-default", DefaultLayout);
 Vue.component("layout-dashboard", DashboardLayout);
-Vue.component("layout-dashboard-rtl", DashboardRTLLayout);
 
 // Main application view
 import App from './App.vue'

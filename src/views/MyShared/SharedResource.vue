@@ -123,8 +123,6 @@
   import { web3FromSource, web3Enable } from "@polkadot/extension-dapp";
   import {getCurrentBlockState,blockNumberToTime} from "@/utils/block"
   import BalanceInput from "@/components/BalanceInput/BalanceInput"
-  import {message} from "ant-design-vue";
-	// First table's list of columns.
 	export default {
 		components: {
       BalanceInput,

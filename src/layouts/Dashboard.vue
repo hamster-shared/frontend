@@ -52,8 +52,6 @@ import enUS from 'ant-design-vue/es/locale/en_US';
 import zhCN from 'ant-design-vue/es/locale/zh_CN';
 import DashboardSidebar from '../components/Sidebars/DashboardSidebar' ;
 import DashboardHeader from '../components/Headers/DashboardHeader' ;
-import DashboardFooter from '../components/Footers/DashboardFooter' ;
-import DashboardSettingsDrawer from '../components/Sidebars/DashboardSettingsDrawer' ;
 
 const EN = 'en-us'
 const ZH = 'zh-cn'
@@ -62,8 +60,6 @@ const ZH = 'zh-cn'
 		components: {
 			DashboardSidebar,
 			DashboardHeader,
-			DashboardFooter,
-			DashboardSettingsDrawer,
 		},
 		data() {
 			return {

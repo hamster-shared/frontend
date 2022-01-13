@@ -71,10 +71,8 @@
 <script>
 import api from "../../api/index.js"
 import { web3FromSource, web3Enable } from "@polkadot/extension-dapp";
-import BigNumber from "bignumber.js";
 import {mapGetters} from "vuex";
 import Input from "../../components/BalanceInput/BalanceInput";
-import {message} from "ant-design-vue";
 	export default ({
 		data() {
 			return {

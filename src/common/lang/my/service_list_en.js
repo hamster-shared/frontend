@@ -35,8 +35,8 @@ module.exports = {
     "orderCancelledSuccessfully": "Order cancelled successfully",
     //Order cancellation failed
     "orderCancellationFailed": "Order cancellation failed",
-    //Collection failed
-    "collectionFailed": "Collection failed",
+    //Failed to claim
+    "collectionFailed": "Failed to claim",
     //Received successfully
     "receivedSuccessfully": "Received successfully",
     //Inuse
