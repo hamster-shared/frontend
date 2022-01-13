@@ -47,4 +47,16 @@ module.exports = {
     "serviceCharge": "手续费",
     //总价
     "totalPrice": "总价",
+    //没有账户
+    "noUsers": "没有账户！！",
+    //请填写租用时长！！
+    "inputRentalDurationTIp": "请填写租用时长！！",
+    //请填写公钥信息！！
+    "inputPubilcKeyTip": "请填写公钥信息！！",
+    //订单支付失败
+    "orderPaymentFailed": "订单支付失败: ",
+    //订单支付成功
+    "orderPaymentＳucceeded": "订单支付成功: ",
+    //账户余额不足！！
+    "balance": "账户余额不足！！",
 }

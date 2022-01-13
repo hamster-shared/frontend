@@ -1,7 +1,3 @@
-<!--
-	This is the Pricing page, it uses the dashboard layout in:
-	"./layouts/Default.vue" .
- -->
 
 <template>
 	<div>
@@ -105,13 +101,13 @@ import {message} from "ant-design-vue";
       }
     },
     methods: {
-      //取消
+      //cancel
       close() {
         this.visible = false;
         this.renewAmount = "";
         this.renewIndex = ""
       },
-      //校验续费金额只能输入数字
+      //Only numbers can be entered to verify the renewal amount
       checkRenewAmount() {
         if (this.renewAmount === "") {
           this.renewAmountTip = true;
@@ -121,10 +117,9 @@ import {message} from "ant-design-vue";
         }
         this.renewAmount = this.renewAmount.replace(/\D/g, "");
       },
-      //获取我的服务列表
+      //Get my services list
       async getResourceList() {
         if (this.currentAccount) {
-          let API = await api;
           let data = await api.then(t => t.query.resourceOrder.userAgreements(this.currentAccount.address)).then(data => {
             return new Promise(function(resolve, reject){
               resolve(data.toJSON())
@@ -143,15 +138,14 @@ import {message} from "ant-design-vue";
             }
           }
           this.resources = list;
-
         }
       },
       async ok(params) {
         if (params.status === "Using") {
-          //使用中续费
+          //Renewal in use
           this.showStakingModal(params.index);
         }else {
-          //领取惩罚金额
+          //Receive penalty amount
           this.receivePenaltyAmount(params.index)
         }
       },
@@ -159,22 +153,22 @@ import {message} from "ant-design-vue";
         this.visible = true;
         this.renewIndex = index;
       },
-      //续费
+      //renew
       async renew() {
-        //校验质押金额
+        //Verify pledge amount
         this.checkRenewAmount();
         if (this.renewAmount === "") {
           return;
         }
         let API = await api;
         this.renewLoading = true;
-        //打开插件
+        //Open plug-in
         await web3Enable("my cool dapp");
-        //获取签名
+        //Get signature
         let signature = await web3FromSource(
             this.currentAccount.meta.source
         );
-        //协议续费
+        //Agreement renewal
         API.tx.resourceOrder.renewAgreement(this.renewIndex,this.renewAmount).signAndSend(this.currentAccount.address,{ signer: signature.signer },({status, events, dispatchError}) => {
           if (status.isInBlock) {
             if (dispatchError) {
@@ -203,13 +197,13 @@ import {message} from "ant-design-vue";
           this.renewLoading = false;
         })
       },
-      //取消订单
+      //cancellation of order
       async cancelOrder(index) {
         this.allLoading = true;
         let API = await api;
-        //打开插件
+        //Open plug-in
         await web3Enable("my cool dapp");
-        //获取签名
+        //Get signature
         let signature = await web3FromSource(
             this.currentAccount.meta.source
         );
@@ -240,17 +234,17 @@ import {message} from "ant-design-vue";
           this.allLoading = false;
         })
       },
-      //领取惩罚金额
+      //Receive penalty amount
       async receivePenaltyAmount(index) {
         this.allLoading = true;
         let API = await api;
-        //打开插件
+        //Open plug-in
         await web3Enable("my cool dapp");
-        //获取签名
+        //Get signature
         let signature = await web3FromSource(
             this.currentAccount.meta.source
         );
-        //领取金额
+        //Claim amount
         API.tx.resourceOrder.withdrawFaultExcution(index).signAndSend(this.currentAccount.address,{signer:signature.signer},({ status, events, dispatchError }) => {
           if (status.isInBlock) {
             if (dispatchError) {
@@ -276,7 +270,7 @@ import {message} from "ant-design-vue";
           this.allLoading = false;
         })
       },
-      // 截止时间
+      // deadline
       async getDeadline(params) {
         let apiPro = await api;
         let header = await apiPro.rpc.chain.getHeader();
@@ -286,7 +280,7 @@ import {message} from "ant-design-vue";
             now.getTime() + space * 6 * 1000
         );
       },
-      //开始时间
+      //start time
       async getStartTime(params) {
         let now = new Date();
         let apiPro = await api;

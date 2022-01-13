@@ -1,7 +1,5 @@
 <template>
-
 	<div>
-
 		<!-- Simple Datatable card -->
 		<a-card :bordered="false" class="header-solid mb-24" :bodyStyle="{padding: 0, paddingTop: '16px'}">
       <div class="mx-25">
@@ -11,7 +9,6 @@
           </a-col>
         </a-row>
       </div>
-
 			<div class="mx-25">
 				<a-row type="flex" :gutter="24">
 					<a-col :span="8" md="12">
@@ -31,7 +28,6 @@
 					</a-col>
 				</a-row>
 			</div>
-
 			<a-table class="mt-20" :columns="columns" :data-source="computedTableData" rowKey="index" :pagination="{pageSize: pageSize,}" >
         <label slot="memory" slot-scope="memory">{{ memory }}GB</label>
         <label slot="status" slot-scope="status">{{stateLabel(status)}}</label>
@@ -94,7 +90,6 @@
         >
           <a-row :gutter="[24]">
             <a-col :span="24">
-
               <a-form-item class="mb-10" :colon="false">
                 <a-input type="hidden" v-decorator="['index',]"></a-input>
                 <a-input
@@ -119,10 +114,7 @@
       </a-spin>
     </a-modal>
     <!-- / set time form modal -->
-
-
   </div>
-
 </template>
 
 <script>
@@ -139,10 +131,8 @@
 		},
 		data() {
 			return {
-
 				// First table's number of rows per page.
 				pageSize: 10,
-
         condition: {
           resourceId: '',
           status: '',
@@ -250,7 +240,6 @@
                       let apiPromise = data[1]
                       let newPrice = vue_.$refs.newPriceRef.getPrice()
                       if(newPrice === '' || isNaN(newPrice)){
-
                         reject(this.$t("shareResource.inputUnitPriceTip"))
                         return
                       }
@@ -263,10 +252,8 @@
                   } else {
                     vue_.setPriceTip = Object.keys(obj)[0]
                   }
-
                   if(obj.InBlock){
                     console.log('InBlock')
-
                     events.forEach(({ event: { data, method, section }, phase },index,array) => {
                       if(method === "ExtrinsicFailed"){
                         reject(this.$t("shareResource.modifyUnitPriceFailed"))
@@ -294,7 +281,6 @@
           }
         });
       },
-
       // Event handler for increase duration.
       handleUpdateTimeFormSubmit(e) {
         let vue_ = this
@@ -413,7 +399,7 @@
           content: h => <div style="color:red;">You are deleting the resource with ID {record.index},system is {record.config.system},specification is {record.config.cpu} nucleus {record.config.memory}G,confirm deletion？ </div>,
           onOk() {
             console.log('OK');
-            // 区块链交易
+            // Blockchain transactions
             return new Promise((resolve, reject)=> {
               web3Enable("my cool dapp")
                   .then(result => {
@@ -464,7 +450,7 @@
       blockNumberToTime,
 		},
     computed: {
-		  // 经过过滤后的列表数据
+		  // Filtered list data
 		  computedTableData(){
 		    let data = this.tableData
 		    if (this.condition.resourceId){

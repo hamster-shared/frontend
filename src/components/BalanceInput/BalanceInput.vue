@@ -36,7 +36,7 @@ export default {
     this.getUintOptions();
   },
   methods: {
-    //获取单位信息
+    //Get company information
     getUintOptions() {
       this.uintOptions = formatBalance.getOptions();
       this.uintOptions.unshift({power:-3,text:"milli",value: '-'});

@@ -1,7 +1,3 @@
-  <!--
-	This is the Pricing page, it uses the dashboard layout in:
-	"./layouts/Default.vue" .
- -->
 
 <template>
 		<div class="market-wrapper">
@@ -274,15 +270,15 @@ import {message} from "ant-design-vue";
       },
       createOrder(){
         if(!this.currentAccount){
-          message.error("没有链接账户！！");
+          message.error(this.$t("market.noUsers"));
           return
         }
         if(!this.param.rentalHour){
-          message.error("请填写租用时长！！");
+          message.error(this.$t("market.inputRentalDurationTIp"));
           return
         }
         if(!this.param.publicKey){
-          message.error("请填写公钥信息！！");
+          message.error(this.$t("market.inputPubilcKeyTip"));
           return
         }
         this.loading = true;
@@ -304,16 +300,16 @@ import {message} from "ant-design-vue";
                                 const decoded = this.api.registry.findMetaError(dispatchError.asModule);
                                 const { docs, name, section } = decoded;
                                 console.log(`${section}.${name}: ${docs.join(' ')}`);
-                                message.error("订单支付失败:" + docs);
+                                message.error(this.$t("market.orderPaymentFailed") + docs);
                                 this.loading = false
                               } else {
                                 // Other, CannotLookup, BadOrigin, no extra info
                                 console.log(dispatchError.toString());
-                                message.error("订单支付失败:" + dispatchError.toString());
+                                message.error(this.$t("market.orderPaymentFailed") + dispatchError.toString());
                                 this.loading = false
                               }
                             } else {
-                              message.success("订单支付成功");
+                              message.success(this.$t("market.orderPaymentＳucceeded"));
                               this.loading = false
                               this.closeOrderCreate()
                               this.queryResourceList()
@@ -322,11 +318,11 @@ import {message} from "ant-design-vue";
                         })
                     .catch((err) => {
                       this.loading = false
-                      message.error("订单支付失败:" + err)
+                      message.error(this.$t("market.orderPaymentFailed") + err)
                     })
             ).catch((err) => {
               this.saveDataLoading = false;
-              message.error("账户余额不足！！"+ err);
+              message.error(this.$t("market.balance")+ err);
             })
       },
       getFee(){

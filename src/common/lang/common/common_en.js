@@ -23,4 +23,6 @@ module.exports = {
     "linkWalletTip": "Polkadot plug-in is not installed!!",
     //No users!!
     "noAccount": "No users!!",
+    //Shared Computing
+    "sharedComputing": "Shared Computing"
 }

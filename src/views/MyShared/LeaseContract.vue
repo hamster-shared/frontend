@@ -1,7 +1,4 @@
-<!--
-	This is the Billing page, it uses the dashboard layout in:
-	"./layouts/Dashboard.vue" .
- -->
+
 <template>
   <a-spin :spinning="receiveAllLoading">
     <div>
@@ -88,13 +85,13 @@ import {message} from "ant-design-vue";
         title:"",
         placeholder:"",
         activeModal: "",
-        //质押信息
+        //Pledge information
         staking: {
-          //质押金额
+          //Pledge amount
           amount: 0,
-          //活跃质押金额
+          //Active pledge amount
           activeAmount: 0,
-          //锁定质押金额
+          //Locked pledge amount
           lockAmount: 0
         },
         visible: false,
@@ -172,14 +169,14 @@ import {message} from "ant-design-vue";
       }
     },
     methods: {
-      //获取服务列表
+      //Get service list
       async getServiceLists() {
         //polkaApi
         if (this.currentAccount) {
           let API = await api;
           this.receiveLoading = true;
-          //查询用户关联的资源id
-          //查询provider对应的租用协议号根据租用协议号查询服务列表
+          //Query the resource ID associated with the user
+          //Query the lease agreement number corresponding to the provider, and query the service list according to the lease agreement number
           let data  = await API.query.resourceOrder.providerAgreements(this.currentAccount.address).then(res => {
             return new Promise(function (resolve,reject){
               resolve(res.toJSON())
@@ -195,28 +192,28 @@ import {message} from "ant-design-vue";
           this.receiveLoading = false;
         }
       },
-      //获取用户质押信息
+      //Obtain user pledge information
       async getStakingInfo() {
         if (this.currentAccount) {
-          //账户地址
+          //ccount address
           let address = this.currentAccount.address;
           //polkaApi
           let API = await api;
           let staking = await API.query.resourceOrder.staking(address);
           if (staking.value.toString()) {
-            //质押总金额
+            //Total pledge amount
             this.staking.amount = parseInt(staking.value['amount'].toString());
-            //活跃金额
+            //Active amount
             this.staking.activeAmount = parseInt(staking.value['active_amount'].toString());
-            //锁定金额
+            //Lock amount
             this.staking.lockAmount = parseInt(staking.value['lock_amount'].toString());
           }
         }
       },
-      //展示质押金额modal
+      //Display pledge amount modal
       showStakingModal(params) {
         this.stakingLoading = false;
-        //账户地址
+        //Account address
         if (this.currentAccount) {
           this.visible = true;
           this.stakingAmountTip = false;
@@ -240,16 +237,16 @@ import {message} from "ant-design-vue";
           this.withdrawAmount()
         }
       },
-      //质押金额
+      //Pledge amount
       async stakingAmountClick() {
-        //校验质押金额
+        //Verify pledge amount
         this.checkStakingAmount();
         if (this.$refs.inputRef.value === "") {
           return;
         }
         let API = await api;
         let address = this.currentAccount.address;
-        //查询账户余额
+        //Query account balance
         let balanceData = await API.query.system.account(address)
         let price = this.$refs.inputRef.getPrice();
         if (parseInt(balanceData.data.free.toString()) < price) {
@@ -257,13 +254,13 @@ import {message} from "ant-design-vue";
           return
         }
         this.stakingLoading = true;
-        //打开插件
+        //Open plug-in
         await web3Enable("my cool dapp");
-        //获取签名
+        //Get signature
         let signature = await web3FromSource(
             JSON.parse(sessionStorage.getItem("account")).meta.source
         );
-        //质押
+        //pledge
         API.tx.resourceOrder.stakingAmount(BigInt(price)).signAndSend(address,{ signer: signature.signer },({status, events, dispatchError}) => {
           if (status.isInBlock) {
             if (dispatchError) {
@@ -293,24 +290,24 @@ import {message} from "ant-design-vue";
         })
       },
       async withdrawAmount() {
-        //校验质押金额
+        //Verify pledge amount
         this.checkStakingAmount();
         if (this.$refs.inputRef.value === "") {
           return;
         }
         let price = this.$refs.inputRef.getPrice();
-        //判断输入的质押金额是否小于等于可取回的活跃质押金额
+        //Judge whether the entered pledge amount is less than or equal to the active pledge amount that can be retrieved
         if (price > this.staking.activeAmount) {
           this.$message.warning(this.$t("leaseContract.retrievedAmountBig"));
           return;
         }
-        //取回质押金额
+        //Withdrawal of pledge amount
         let API = await api;
         let address = this.currentAccount.address;
         this.stakingLoading = true;
-        //打开插件
+        //Open plug-in
         await web3Enable("my cool dapp");
-        //获取签名
+        //Get signature
         let signature = await web3FromSource(
             JSON.parse(sessionStorage.getItem("account")).meta.source
         );
@@ -342,13 +339,13 @@ import {message} from "ant-design-vue";
           this.stakingLoading = false;
         })
       },
-      //取消
+      //cancel
       close() {
         this.visible = false;
         this.$refs.inputRef.value = ""
         this.$refs.inputRef.uintPower = 0
       },
-      //校验质押金额只能输入数字
+      //Only numbers can be entered to verify the pledge amount
       checkStakingAmount() {
         if (this.$refs.inputRef.value === "") {
           this.stakingAmountTip = true;
@@ -359,16 +356,16 @@ import {message} from "ant-design-vue";
         this.$refs.inputRef.value = this.$refs.inputRef.value.replace(/\D/g, "");
       },
 
-      //领取收益
+      //Receive income
       async receiveIncome(params) {
         //api
         let API = await api;
-        //地址
+        //address
         let address = this.currentAccount.address;
         this.receiveLoading= true;
-        //打开插件
+        //Open plug-in
         await web3Enable("my cool dapp");
-        //获取签名
+        //Get signature
         let signature = await web3FromSource(
             JSON.parse(sessionStorage.getItem("account")).meta.source
         );
@@ -400,7 +397,7 @@ import {message} from "ant-design-vue";
         })
       },
 
-      //领取全部收益
+      //Receive all income
       async receiveAllIncome() {
         let filter = this.data2.filter(item => item.receive_amount > 0);
         if (filter.length === 0) {
@@ -415,9 +412,9 @@ import {message} from "ant-design-vue";
         })
         let address = this.currentAccount.address;
         this.receiveAllLoading = true;
-        //打开插件
+        //Open plug-in
         await web3Enable("my cool dapp");
-        //获取签名
+        //Get signature
         let signature = await web3FromSource(
             JSON.parse(sessionStorage.getItem("account")).meta.source
         );
@@ -447,7 +444,7 @@ import {message} from "ant-design-vue";
           this.receiveAllLoading = false;
         })
       },
-      //获取当前区块
+      //Get current block
       async getCurrentBlock() {
         let API = await api;
         await API.query.system.number((res) => {

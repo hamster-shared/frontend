@@ -1,11 +1,8 @@
 
 <template>
-
   <div>
-
     <!-- Orders List card -->
     <a-card :bordered="false" class="header-solid mb-24" :bodyStyle="{padding: 5, paddingTop: '16px'}">
-
       <!-- Table search -->
       <div class="mx-25">
         <a-row type="flex" :gutter="24">
@@ -24,7 +21,6 @@
                :pagination="{pageSize: pageSize}"
                :loading="loading"
       >
-
         <template slot="status" slot-scope="test,record">
           <a-button v-if="record.status === 'Finished'" shape="circle" size="small"
                     class="btn-status border-success mr-5">
@@ -57,13 +53,9 @@
 
       </a-table>
       <!-- / Orders table -->
-
     </a-card>
     <!-- / Orders List card -->
-
   </div>
-
-
 </template>
 
 <script>
@@ -208,24 +200,19 @@ export default {
     setTime(str) {
       var n = parseInt(str) * 1000;
       var D = new Date(n);
-      var year = D.getFullYear();//四位数年份
+      var year = D.getFullYear();//Four digit year
 
-      var month = D.getMonth() + 1;//月份(0-11),0为一月份
+      var month = D.getMonth() + 1;//Month (0-11), 0 is January
       month = month < 10 ? ('0' + month) : month;
 
-      var day = D.getDate();//月的某一天(1-31)
+      var day = D.getDate();//One day of the month (1-31)
       day = day < 10 ? ('0' + day) : day;
 
-      var hours = D.getHours();//小时(0-23)
+      var hours = D.getHours();//Hours (0-23)
       hours = hours < 10 ? ('0' + hours) : hours;
 
-      var minutes = D.getMinutes();//分钟(0-59)
+      var minutes = D.getMinutes();//Minutes (0-59)
       minutes = minutes < 10 ? ('0' + minutes) : minutes;
-
-      // var seconds = D.getSeconds();//秒(0-59)
-      // seconds = seconds<10?('0'+seconds):seconds;
-      // var week = D.getDay();//周几(0-6),0为周日
-      // var weekArr = ['周日','周一','周二','周三','周四','周五','周六'];
 
       var now_time = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes;
       return now_time;

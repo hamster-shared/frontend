@@ -1,6 +1,3 @@
-<!--
-	This is the dashboard layout, used in dashboard, tables, billing and profile pages.
- -->
 
 <template>
   <a-config-provider :locale="locale">

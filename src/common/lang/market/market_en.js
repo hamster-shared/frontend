@@ -47,4 +47,16 @@ module.exports = {
     "serviceCharge": "Service Charge",
     //Total price
     "totalPrice": "Total Price",
+    //No users
+    "noUsers": "No users！！",
+    //Please fill in the rental duration!!
+    "inputRentalDurationTIp": "Please fill in the rental duration!!",
+    //Please fill in the public key information!!
+    "inputPubilcKeyTip": "Please fill in the public key information!!",
+    //Order payment failed
+    "orderPaymentFailed": "Order payment failed: ",
+    //Order payment succeeded:
+    "orderPaymentＳucceeded": "Order payment succeeded: ",
+    //Insufficient account balance!!
+    "balance": "Insufficient account balance!!",
 }

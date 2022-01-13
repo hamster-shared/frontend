@@ -1,7 +1,7 @@
 
 const sd = require("silly-datetime");
 /**
- * 将毫秒转换成YYYY-MM-DD格式
+ * Convert milliseconds to YYYY-MM-DD format
  * @param time
  * @returns {string}
  */

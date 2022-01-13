@@ -1,9 +1,9 @@
-/// 链区块工具类
+///Blockchain tool class
 
 import api from "../api";
 import {timeToDay} from "@/utils/common";
 
-// 获取链上当前区块
+// Get the current block on the chain
 export const getCurrentBlockState = async () => {
     let apiPro = await api;
     let header = await apiPro.rpc.chain.getHeader();
@@ -13,7 +13,7 @@ export const getCurrentBlockState = async () => {
     }
 }
 
-// 根据区块查询区块生成的时间（有细微误差）
+// Query the generation time of the block according to the block (with slight error)
 export const blockNumberToTime = (param,blockSate) => {
 
     let blockNumber

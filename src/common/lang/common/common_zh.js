@@ -23,4 +23,6 @@ module.exports = {
     "linkWalletTip": "没有安装Polkadot插件！！",
     //没有用户！！
     "noAccount": "没有用户！！",
+    //共享计算
+    "sharedComputing": "共享计算"
 }
