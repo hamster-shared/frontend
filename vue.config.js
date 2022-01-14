@@ -4,7 +4,7 @@ module.exports = {
 		config
 			.plugin('html')
 			.tap(args => {
-				args[0].title = 'TTChain - Shared Computing'
+				args[0].title = 'Hamster'
 				return args
 			})
 	}
