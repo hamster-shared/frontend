@@ -1,10 +1,8 @@
 {
-  "name": "muse-vue-ant-design-dashboard-pro",
+  "name": "hamster-frontend",
   "version": "1.0.0",
-  "description": "A user-friendly, premium and beautiful dashboard based on Ant Design Vue.",
   "main": "src/main.js",
-  "homepage": "https://demos.creative-tim.com/muse-vue-ant-design-dashboard-pro/",
-  "repository": "https://github.com/creativetimofficial/muse-vue-ant-design-dashboard-pro",
+  "repository": "https://github.com/hamster-shared/frontend",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service --open serve",
